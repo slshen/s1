@@ -7,15 +7,12 @@ compile: Dockerfile
 
 start:
 	docker run \
-	  --network=host -p 53:53/udp -p 53:53/tcp \
-	  --restart=unless-stopped \
-	  --init \
-	  -d \
+	  --network=host --restart=unless-stopped --init -d \
 	 --name dnsproxy \
 	$(IMAGE)
 
 remove:
-	docker rm dnsproxy || true
+	docker rm --force dnsproxy || true
 
 restart: remove start
 

@@ -180,7 +180,7 @@ block_ipv6 = true
 ## example.com     10.1.1.1
 ## www.google.com  forcesafesearch.google.com
 
-# cloaking_rules = 'cloaking-rules.txt'
+cloaking_rules = 'cloaking-rules.txt'
 
 ###########################
 #        DNS cache        #
