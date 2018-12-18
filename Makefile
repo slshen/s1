@@ -1,4 +1,4 @@
-modules=dnsproxy
+modules=dnsproxy dhcp
 
 do-%:
 	for m in $(modules); do \
