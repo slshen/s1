@@ -7,9 +7,8 @@ compile: Dockerfile
 
 start:
 	docker run \
-	  --network=host --restart=unless-stopped --init -d \
-	 --name dnsproxy \
-	$(IMAGE)
+	  --network=net160 --restart=unless-stopped --init -d \
+	  --name dnsproxy $(IMAGE)
 
 remove:
 	docker rm --force dnsproxy || true

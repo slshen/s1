@@ -13,13 +13,28 @@ cat > /etc/sudoers.d/wheel <<EOF
 %wheel ALL=(ALL) NOPASSWD: ALL
 EOF
 
-# so since we're going to be running dnsproxy in a docker container
-# on this host we need to set dns manually to the bridge ip address
-# otherwise host name lookups fail (results come from 172.17.0.1
-# instead of the host's ip address)
+cat > /etc/resolv.conf <<EOF
+nameserver 192.168.1.9
+nameserver 1.1.1.1
+EOF
+
 cat > /etc/docker/daemon.json <<EOF
 {
-    "dns": [ "172.17.0.1" ] 
+    "experimental": true
 }
 EOF
 
+cat >> /etc/networking/interfaces <<EOF
+auto ipv0
+iface ipv0 inet manual
+        pre-up ip link add ipv0 link eth0 type ipvlan mode bridge
+        up ip addr add 192.168.1.160 dev ipv0
+        up ip link set ipv0 up
+        up ip route add 192.168.1.160/27 via 192.168.1.160
+        post-down ip link del ipv0
+EOF
+
+# https://hicu.be/macvlan-vs-ipvlan
+
+docker network create -d ipvlan --subnet 192.168.1.0/24 --ip-range 192.168.1.160/27 --gateway 192.168.1.1 \
+       -o ipvlan_mode=l2 net160 -o parent=eth0 --aux-address="container_host=192.168.1.160"
