@@ -156,7 +156,7 @@ log_files_max_backups = 1
 ## Do not enable if you added a validating resolver such as dnsmasq in front
 ## of the proxy.
 
-block_ipv6 = true
+block_ipv6 = false
 
 ##################################################################################
 #        Route queries for specific domains to a dedicated set of servers        #
@@ -226,7 +226,7 @@ cache_neg_max_ttl = 600
 
   ## Path to the query log file (absolute, or relative to the same directory as the executable file)
 
-  # file = 'query.log'
+  file = '/dev/stdout'
 
 
   ## Query log format (currently supported: tsv and ltsv)
@@ -236,8 +236,7 @@ cache_neg_max_ttl = 600
 
   ## Do not log these query types, to reduce verbosity. Keep empty to log everything.
 
-  # ignored_qtypes = ['DNSKEY', 'NS']
-
+  ignored_qtypes = ['DNSKEY', 'NS']
 
 
 ############################################

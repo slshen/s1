@@ -2,12 +2,12 @@ VERSION=v0
 IMAGE=dhcp
 IMAGE_TAG=$(IMAGE):$(VERSION)
 
-compile: Dockerfile
+compile: Dockerfile dhcpd.conf
 	docker build -t $(IMAGE) -t $(IMAGE_TAG) .
 
 start:
 	docker run \
-	  --network=host --restart=unless-stopped --init -d \
+	  --network=net160 --restart=unless-stopped --init -d \
 	  --name dhcp \
 	$(IMAGE)
 
