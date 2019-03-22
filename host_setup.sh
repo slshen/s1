@@ -18,6 +18,10 @@ nameserver 192.168.1.9
 nameserver 1.1.1.1
 EOF
 
+cat > /etc/sysctl.d/local.conf <<EOF
+vm.max_map_count=262144
+EOF
+
 cat > /etc/docker/daemon.json <<EOF
 {
     "experimental": true
