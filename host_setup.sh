@@ -51,6 +51,8 @@ EOF
 
 # https://hicu.be/macvlan-vs-ipvlan
 
-docker network create -d ipvlan --subnet 192.168.1.0/24 --ip-range 192.168.1.160/27 --gateway 192.168.1.1 \
-       -o ipvlan_mode=l2 net160 -o parent=eth0 --aux-address="container_host=192.168.1.160"
+docker network create -d ipvlan --subnet 192.168.1.0/24 \
+       --ip-range 192.168.1.160/27 --gateway 192.168.1.1 \
+       -o ipvlan_mode=l2 net160 -o parent=eth0 \
+       --aux-address="container_host=192.168.1.160"
 
