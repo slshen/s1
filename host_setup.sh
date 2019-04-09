@@ -2,7 +2,7 @@
 
 echo http://dl-cdn.alpinelinux.org/alpine/v3.8/community >> /etc/apk/repositories
 
-apk add git bind-tools docker make curl sudo emacs less
+apk add git bind-tools docker make curl sudo emacs less openssl zip groff
 
 user=sls
 
@@ -22,10 +22,21 @@ cat > /etc/sysctl.d/local.conf <<EOF
 vm.max_map_count=262144
 EOF
 
+./create-dockerd-cert.sh
+
 cat > /etc/docker/daemon.json <<EOF
 {
     "experimental": true
+    "tls": true,
+    "tlsverify": true,
+    "tlscacert": "/var/local/docker/ca.pem",
+    "tlscert": "/var/local/docker/dockerd-cert/cert.pem",
+    "tlskey": "/var/local/docker/dockerd-cert/key.pem"
 }
+EOF
+
+cat >> /etc/conf.d/docker <<EOF
+DOCKER_OPTS="-H unix:///var/run/docker.sock -H tcp://127.0.0.1:2376 -H tcp://192.168.1.9:2376"
 EOF
 
 cat >> /etc/networking/interfaces <<EOF
@@ -42,3 +53,4 @@ EOF
 
 docker network create -d ipvlan --subnet 192.168.1.0/24 --ip-range 192.168.1.160/27 --gateway 192.168.1.1 \
        -o ipvlan_mode=l2 net160 -o parent=eth0 --aux-address="container_host=192.168.1.160"
+
