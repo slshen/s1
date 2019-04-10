@@ -8,8 +8,7 @@ This is my actual setup. (Any sensitve data isn't here, it's either
 resident locally on the machine or been pushed into my own private s3
 bucket.)
 
-I've decided to write down my choices in [architecture design record form](https://github.com/joelparkerhenderson/architecture_decision_record) -
-[take a look at my decisions](adr).
+I've decided to write down my choices in [architecture design record form](adr).
 
 
 
