@@ -8,7 +8,7 @@ compile: Dockerfile smb.conf users.sh
 	docker build -t $(IMAGE) -t $(IMAGE_TAG) .
 
 users.sh:
-	aws s3 sync s3://slshen-us-west-2/ops/s1/samba/users.sh .
+	aws s3 sync s3://slshen-us-west-2/ops/s1/samba/ .
 
 push-users:
 	aws s3 cp users.sh s3://slshen-us-west-2/ops/s1/samba/users.sh
