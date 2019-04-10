@@ -18,6 +18,6 @@ So I need to run `samba` on the host, mount the shared directory on
 windows, and supply the right flag to `sam local ...` and it should
 work.
 
-A secondary motivation is to migrate my existing
-(https://freenas.org/) storage server to the much more efficient
-NUC-box.  (I really don't need all the features of FreeNAS.)
+A secondary motivation is to migrate my existing https://freenas.org/
+storage server to the much more efficient NUC-box.  (I really don't
+need all the features of FreeNAS.)

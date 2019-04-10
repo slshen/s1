@@ -14,7 +14,7 @@ I did briefly consider using the free
 [VMWare vSphere Hypervisor](https://www.vmware.com/products/vsphere-hypervisor.html)
 but it doesn't boot on my particular machine.
 
-See (../host_setup.sh) for pseudo-code on how the host has been setup.
+See <../host_setup.sh> for pseudo-code on how the host has been setup.
 (In reality the host was setup by hand.)
 
 
