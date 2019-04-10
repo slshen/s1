@@ -16,9 +16,8 @@ push-users:
 start:
 	docker run \
 	  --network=net160 --ip="192.168.1.169" --init -d \
+	  --restart=unless-stopped \
 	  --name samba -v /home:/home $(IMAGE)
-
-# --restart=unless-stopped
 
 remove:
 	docker rm --force samba || true
