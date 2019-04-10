@@ -14,7 +14,7 @@ boot and easier to manage.
 I've chosen to use an `ipvlan` network - see
 https://hicu.be/macvlan-vs-ipvlan for some helpful background.
 
-The (../host_setup.sh) pseudo-code sets up an `ipvlan` network named
+The [host_setup.sh](../host_setup.sh) pseudo-code sets up an `ipvlan` network named
 `net160` that gives each container its own ip in a range I've carved
 out of my local home network (192.168.1.160/27).
 
