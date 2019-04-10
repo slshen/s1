@@ -3,8 +3,9 @@
 set -e
 
 function u () {
-  user=$1 pw="$2"
-  adduser -D $user
+  user=$1 pw="$2" uid="$3" gid="$4"
+  addgroup -g $gid $user
+  adduser -D -u $uid -G $user -s /sbin/nologin $user
   echo "$user:$pw" | chpasswd
   smbpasswd -a $user <<EOF
 $pw
