@@ -10,4 +10,6 @@ RUN wget -O dnscrypt-proxy.tar.gz https://github.com/jedisct1/dnscrypt-proxy/rel
   cp linux-x86_64/dnscrypt-proxy . && \
   rm -rf linux-x86_64 dnscrypt-proxy.tar.gz*
 COPY dnscrypt-proxy.toml cloaking-rules.txt ./
+# add .lan as well for local domain names as a windows workaround
+RUN sed -i -e "p s/.pprentice.com/.lan/" cloaking-rules.txt
 CMD [ "/app/dnscrypt-proxy" ]
