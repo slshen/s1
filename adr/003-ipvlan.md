@@ -2,7 +2,7 @@
 
 ## Status
 
-accpted
+accepted
 
 ## Narrative
 
