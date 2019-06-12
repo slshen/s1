@@ -32,6 +32,12 @@ cat > /etc/docker/daemon.json <<EOF
     "tlscacert": "/var/local/docker/ca.pem",
     "tlscert": "/var/local/docker/dockerd-cert/cert.pem",
     "tlskey": "/var/local/docker/dockerd-cert/key.pem"
+    "log-driver" : "splunk",
+    "log-opts" : {
+      "splunk-token" : "$(cat /var/local/humio/ingest-token.txt)",
+      "splunk-url" : "https://cloud.humio.com",
+      "mode": "non-blocking"
+    }
 }
 EOF
 
