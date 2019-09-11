@@ -9,6 +9,7 @@ for user in $USERS; do
   if ! id foo 2> /dev/null; then
     adduser --disabled-password $user < /dev/null
     adduser $user docker
+    adduser $user sudo
     runuser -u $user -- mkdir /home/$user/.ssh
   fi
 done
