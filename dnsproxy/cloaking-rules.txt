@@ -3,5 +3,6 @@ r2.pprentice.com 192.168.1.2
 r3.pprentice.com 192.168.1.3
 printer.pprentice.com 192.168.1.8
 s1.pprentice.com 192.168.1.9
+s1-160.pprentice.com 192.168.1.160
 devbox.pprentice.com 192.168.1.170
 homes.pprentice.com 192.168.1.169

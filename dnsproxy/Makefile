@@ -18,4 +18,4 @@ remove: s1-only
 restart: remove start
 
 s1-only:
-	test $$(hostname) = "s1"
+	test $$(hostname) = "s1" -o $$(hostname) = "devbox"
