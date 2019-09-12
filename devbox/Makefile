@@ -10,7 +10,8 @@ compile: Dockerfile
 start: s1-only volume
 	docker run \
 	  --network=net160 --ip=192.168.1.170 --restart=unless-stopped --init -d \
-	  --name devbox --hostname devbox -v devbox:/home -v /var/run/docker.sock:/var/run/docker.sock \
+	  --name devbox --hostname devbox --dns-search pprentice.com \
+	  -v devbox:/home -v /var/run/docker.sock:/var/run/docker.sock \
 	  $(IMAGE)
 
 volume: s1-only

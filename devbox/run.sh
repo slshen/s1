@@ -1,7 +1,9 @@
 #!/bin/bash
 
 mkdir /run/sshd
-/usr/sbin/sshd -p 222
+/usr/sbin/sshd
+/usr/sbin/syslogd
+tail -F /var/log/auth.log &
 
 USERS=slshen
 
