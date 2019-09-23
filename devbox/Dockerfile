@@ -22,7 +22,10 @@ RUN \
 
 RUN \
   apt-get install -y ssh git man less traceroute build-essential \
-    python3 curl python3-pip jq tig htop sudo
+    python3 curl python3-pip jq tig htop sudo vim \
+    dnsutils dstat neo4j-client net-tools lsof inetutils-syslogd \
+    apt-file && \
+  apt-file update
 
 # install amazon corretto
 RUN \
@@ -30,20 +33,12 @@ RUN \
   apt-get install -y java-common && \
   dpkg -i /tmp/amazon-corretto.deb
 
-RUN \
-  apt-get install -y dnsutils dstat neo4j-client net-tools lsof inetutils-syslogd
-
-RUN \
-  apt-get install -y apt-file && \
-  apt-file update
-
 COPY run.sh /usr/local/sbin/run.sh
 COPY sshd_config /etc/ssh/sshd_config
 
 RUN chmod a+rx /usr/local/sbin/run.sh && \
   echo "%sudo  ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/sudo-nopww
 
-EXPOSE 222/tcp
+EXPOSE 3028/tcp
 
 ENTRYPOINT [ "/usr/local/sbin/run.sh" ]
-
