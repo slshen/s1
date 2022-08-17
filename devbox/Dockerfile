@@ -1,4 +1,4 @@
-FROM debian:stretch
+FROM debian:bullseye
 
 RUN \
   addgroup --gid 102 docker
@@ -7,6 +7,7 @@ RUN \
 RUN \
   apt-get update && \
   apt-get install -y \
+    apt-utils \
     apt-transport-https \
     ca-certificates \
     curl \
@@ -15,7 +16,7 @@ RUN \
   (curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -) && \
   add-apt-repository \
    "deb [arch=amd64] https://download.docker.com/linux/debian \
-   stretch \
+   bullseye \
    stable" && \
   apt-get update && \
   apt-get install -y docker-ce-cli
@@ -29,9 +30,10 @@ RUN \
 
 # install amazon corretto
 RUN \
-  curl -L -o /tmp/amazon-corretto.deb https://d3pxv6yz143wms.cloudfront.net/11.0.4.11.1/java-11-amazon-corretto-jdk_11.0.4.11-1_amd64.deb && \
-  apt-get install -y java-common && \
-  dpkg -i /tmp/amazon-corretto.deb
+  curl -L https://apt.corretto.aws/corretto.key | apt-key add -  && \
+  add-apt-repository 'deb https://apt.corretto.aws stable main' && \
+  apt-get update && \
+  apt-get install -y java-11-amazon-corretto-jdk
 
 COPY run.sh /usr/local/sbin/run.sh
 COPY sshd_config /etc/ssh/sshd_config

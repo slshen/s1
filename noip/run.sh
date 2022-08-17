@@ -10,7 +10,7 @@ while true; do
     echo "internet address is $addr"
     echo "dns address is $dns_addr"
     curl -u sls@metopic.com:${password} \
-      "https://dynupdate.no-ip.com/nic/update?hostname=slshen.hopto.org&myip=${ip}"
+      "https://dynupdate.no-ip.com/nic/update?hostname=slshen.hopto.org&myip=${addr}"
   fi
   sleep 600
 done

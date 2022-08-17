@@ -4,7 +4,7 @@ IMAGE_TAG=$(IMAGE):$(VERSION)
 
 .PHONY: s1-only volume
 
-compile: Dockerfile
+image: Dockerfile
 	docker build -t $(IMAGE) -t $(IMAGE_TAG) .
 
 start: s1-only volume

@@ -4,12 +4,15 @@ IMAGE_TAG=$(IMAGE):$(VERSION)
 
 .PHONY: s1-only
 
-compile: Dockerfile dnscrypt-proxy.toml cloaking-rules.txt
+image: Dockerfile dnscrypt-proxy.toml cloaking-rules.txt
 	docker build -t $(IMAGE) -t $(IMAGE_TAG) .
 
 start: s1-only
 	docker run \
 	  --network=net160 --ip=192.168.1.165 --restart=unless-stopped --init -d \
+	  --log-driver=syslog \
+      --log-opt syslog-address=tcp+tls://logs3.papertrailapp.com:48516 \
+      --log-opt tag=dnsproxy \
 	  --name dnsproxy $(IMAGE)
 
 remove: s1-only

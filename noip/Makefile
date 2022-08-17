@@ -12,7 +12,6 @@ start: s1-only
 	  --restart=unless-stopped --init -d \
 	  --name noip \
 	  --dns 8.8.8.8 \
-	  --log-driver json-ile \
 	  $(IMAGE)
 
 password.txt:
@@ -21,7 +20,7 @@ password.txt:
 	fi
 
 remove: s1-only
-	docker rm --force devbox || true
+	docker rm --force noip || true
 
 restart: remove start
 

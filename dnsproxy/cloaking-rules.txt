@@ -6,3 +6,7 @@ s1.pprentice.com 192.168.1.9
 s1-160.pprentice.com 192.168.1.160
 devbox.pprentice.com 192.168.1.170
 homes.pprentice.com 192.168.1.169
+www.pprentice.com 192.168.1.171
+*.tiktokcdn.com 192.168.1.171
+*.tiktokv.com 192.168.1.171
+*.musical.ly 192.168.1.171
